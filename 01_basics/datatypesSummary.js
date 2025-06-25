@@ -30,3 +30,5 @@ const myFunction = function() {
 }
 
 console.log(typeof(Obj));
+
+// Stack(Primitive) Heap(Reference(Non Primitive))
