@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure aur chai</title>
+</head>
+<body style="background-color: #313131;">
+    <button id="orange">Orange</button>
+    <button id="green">Green</button>
+</body>
+<script>
+    // function init() {
+    //     let name = "Mozilla"; // name is a local variable created by init
+    //     function displayName() {
+    //         // displayName() is the inner function, that forms a closure
+    //         console.log(name); // use variable declared in the parent function
+    //     }
+    //     displayName();
+    // }
+    // init();
+
+
+    // // Lexical scoping
+
+    // function outer() {
+    //     let username = "daksh";
+    //     function inner() {
+    //         console.log("inner", username); 
+    //     }
+    //     function innerTwo() {
+    //         console.log("inner", username); 
+    //     }
+    //     inner()
+    //     innerTwo()
+    // } 
+
+    // outer()  
+    
+    // bhaiyo mei share nhi hoga but child parent se share kar sakta hai but parent child se nhi kar sakta
+
+
+    // Closures
+
+    function makeFunc() {
+        const name = "Mozilla";
+        function displayName() {
+            console.log(name);
+        }
+        return displayName; // ab ye toh direct function ka reference return kar raha hai along with parent function ke scope ke andar ki cheeje (matlb lexical scope bhi return hota hai)
+    }
+
+    const myFunc = makeFunc(); // yaha ab hum reference ko store karre hai but usme sirf uska scope nhi balki uske sath agar koi parent function hai toh uska bhi scope ka access milega (lexical scoping)
+    myFunc();
+
+
+</script>
+<script>
+    // document.getElementById('orange').addEventListener('click', () => {
+    //     document.body.style.backgroundColor = 'orange'
+    // })
+    // document.getElementById('green').addEventListener('click', () => {
+    //     document.body.style.backgroundColor = 'green'
+    // })
+
+    function ClickHandler(color) {
+        // document.body.style.backgroundColor = `${color}`
+
+        return function() {
+            document.body.style.backgroundColor = `${color}`
+        }
+    }
+
+    document.getElementById('orange').addEventListener('click', ClickHandler("orange"))
+    document.getElementById('green').addEventListener('click', ClickHandler("green")) // ab ye case mei click event toh function expect karra hai aur hum toh execute kardere hai toh automatically run hojayega jaise hei call kiya isliye hum function ke andar aur ek function banake us function ko return karenge taki function return ho along with the lexical scope 
+
+    // example for lexical scoping and closure
+</script>
+</html>
